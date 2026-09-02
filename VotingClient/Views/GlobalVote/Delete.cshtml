@@ -1,0 +1,62 @@
+﻿@model VotingClient.Models.Vote
+
+@{ ViewBag.Title = "Удаление кандидата"; }
+
+<h2>Удаление товара</h2>
+
+<h4>
+    Вы действительно хотите удалить этого кандидата?
+</h4>
+
+<table class="table">
+
+    <tr>
+        <th>Id</th>
+        <td>@Model.Id</td>
+    </tr>
+
+    <tr>
+        <th>Имя</th>
+        <td>@Model.FullName</td>
+    </tr>
+
+    <tr>
+        <th>Возраст</th>
+        <td>@Model.Age</td>
+    </tr>
+
+    <tr>
+        <th>Описание</th>
+        <td>@Model.Description</td>
+    </tr>
+
+    <tr>
+        <th>Категория</th>
+        <td>@Model.Category</td>
+    </tr>
+    <tr>
+
+</table>
+
+@using (Html.BeginForm(
+    "DeleteConfirmed",
+    "GlobalVote",
+    FormMethod.Post))
+{
+@Html.HiddenFor(model => model.Id)
+
+<button type="submit"
+    class="btn btn-danger">
+    Удалить
+</button>
+
+<a href="@Url.Action("Vote","GlobalVote")"
+   class="btn btn-default">
+   Отмена
+</a>}
+
+@if (ViewBag.Message != null)
+{
+<p>
+    @ViewBag.Message
+</p>}

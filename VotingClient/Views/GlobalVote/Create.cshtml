@@ -1,0 +1,76 @@
+﻿@model VotingClient.Models.Vote
+
+@{ ViewBag.Title = "Добавление кандидата"; }
+
+<h2>Добавление товара</h2>
+
+@using (Html.BeginForm())
+{
+<div class="form-group">
+    <label>ФИО</label>
+
+    @Html.TextBoxFor(
+    model => model.FullName,
+    new
+    {
+      @class = "form-control"
+    })
+</div>
+
+ <div class="form-group">
+      <label>Возраст</label>
+
+       @Html.TextBoxFor(
+       model => model.Age,
+       new
+       {
+            @class = "form-control",
+            type = "number"
+       })
+</div>
+
+<div class="form-group">
+     <label>Описание</label>
+
+     @Html.TextBoxFor(
+     model => model.Description,
+     new
+     {
+           @class = "form-control",
+     })
+</div>
+
+<div class="form-group">
+     <label>Категория</label>
+
+      @Html.TextBoxFor(
+      model => model.Category,
+      new
+      {
+             @class = "form-control"
+      })
+</div>
+/*<<div class="form-group">
+    <label for="photo">Фотография кандидата</label>
+    @Html.TextBoxFor(
+         model => model.photo,
+         new
+         {
+             type = "file",           // Превращает текстовое поле в кнопку выбора файла
+             @class = "form-control",
+             accept = "image/*"       // Разрешает выбирать только картинки
+         })
+</div>*/
+
+
+<br />
+
+<button type="submit" class="btn btn-primary">Добавить</button>
+
+ <a href="@Url.Action("Vote","GlobalVote")"class="btn btn-default">Отмена</a>}
+
+@if (ViewBag.Message != null)
+{
+<p>
+    @ViewBag.Message
+</p>}

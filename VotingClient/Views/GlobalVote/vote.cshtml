@@ -1,0 +1,134 @@
+﻿@model List<VotingClient.Models.Vote>
+
+@{ ViewBag.Title = "Кандидаты"; }
+
+<h2>Каталог товаров</h2>
+@if (TempData["Message"] != null)
+{
+<div class="alert alert-info">
+    @TempData["Message"]
+</div>}
+
+<form method="get"
+      action="@Url.Action("Search", "GlobalVote")">
+
+    <input type="text"
+           name="name"
+           placeholder="Название товара" />
+
+    <button type="submit"
+            class="btn btn-primary">
+        Найти
+    </button>
+
+    <a href="@Url.Action("Vote", "GlobalVote")"
+       class="btn btn-default">
+        Все товары
+    </a>
+
+</form>
+
+<br />
+
+<form method="get"
+      action="@Url.Action("SearchVoice", "GlobalVote")">
+
+    <input type="number"
+           name="maxVoice"
+           placeholder="Максимальное количество голосов" />
+
+    <button type="submit"
+            class="btn btn-primary">
+        Фильтровать
+    </button>
+
+</form>
+
+<br />
+
+<form method="get"
+      action="@Url.Action("Category", "GlobalVote")">
+
+    <input type="text"
+           name="category"
+           placeholder="Название категории" />
+
+    <button type="submit"
+            class="btn btn-primary">
+        Найти
+    </button>
+</form>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Полное имя</th>
+            <th>Возраст</th>
+            <th>Описание</th>
+            <th>Категория</th>
+            <th>Количество голосов</th>
+            <th>Фото</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var vote in Model)
+        {
+        <tr>
+            <td>@vote.Id</td>
+            <td>@vote.FullName</td>
+            <td>@vote.Age</td>
+            <td>@vote.Description</td>
+            <td>@vote.Category</td>
+            <td>@vote.VoteCount</td>
+            <td>
+                @if (!string.IsNullOrEmpty(vote.photo))
+                {
+                    var directUrl = "http://localhost:58230/foto/" + vote.photo;
+
+        <img src="@directUrl" alt="Фото" width="100" height="100" style="object-fit: cover;" /> }
+    else
+    {
+        <span>Нет фото</span>}
+            </td>
+            <td>
+                @using (Html.BeginForm("VoteUp", "GlobalVote", FormMethod.Post))
+                {
+        <input type="hidden" name="id" value="@vote.Id" />
+                            <button type="submit" class="btn btn-success">
+                            Проголосовать
+                            </button>}
+            </td>
+            <td>
+                <a href="@Url.Action(
+                "Edit",
+                "GlobalVote",
+                new { id = vote.Id })"
+                   class="btn btn-warning">
+                    Изменить
+                </a>
+            </td>
+            <td>
+                <a href="@Url.Action(
+                "Delete",
+                "GlobalVote",
+                new { id = vote.Id })"
+                   class="btn btn-danger">
+                    Удалить
+                </a>
+            </td>
+
+        </tr>}
+    </tbody>
+</table>
+<p>
+    <a href="@Url.Action(
+                "Create",
+                "GlobalVote")"
+       class="btn btn-success">
+        Добавить кандидата
+    </a>
+</p>
