@@ -2,7 +2,7 @@
 
 @{ ViewBag.Title = "Кандидаты"; }
 
-<h2>Каталог товаров</h2>
+<h2>Кандидаты</h2>
 @if (TempData["Message"] != null)
 {
 <div class="alert alert-info">
@@ -14,7 +14,7 @@
 
     <input type="text"
            name="name"
-           placeholder="Название товара" />
+           placeholder="Имя кандидата" />
 
     <button type="submit"
             class="btn btn-primary">
@@ -23,7 +23,7 @@
 
     <a href="@Url.Action("Vote", "GlobalVote")"
        class="btn btn-default">
-        Все товары
+        Все кандидаты
     </a>
 
 </form>
