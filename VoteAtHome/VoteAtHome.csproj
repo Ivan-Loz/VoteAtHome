@@ -170,6 +170,7 @@
     <Compile Include="VoteDB.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="foto\Alexsei.jpg" />
     <Content Include="foto\dana.jpg" />
     <Content Include="foto\pho.jpg" />
     <Content Include="foto\Hura.jpg" />

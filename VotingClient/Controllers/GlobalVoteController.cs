@@ -293,7 +293,7 @@ Vote vote)
 
             return RedirectToAction("Vote");
         }
-        [HttpPost]
+        /**[HttpPost]
         public async Task<ActionResult> VoteUp(int id)
         {
             if (id <= 0) return RedirectToAction("Vote");
@@ -314,7 +314,7 @@ Vote vote)
                 }
             }
             return RedirectToAction("Vote");
-        }
+        }**/
 
 
     }
